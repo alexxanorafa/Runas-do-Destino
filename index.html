@@ -6,6 +6,7 @@
   <title>Runas do Destino</title>
   <meta name="description" content="Runas Nórdicas - Jogo de Estratégia e Adivinhação">
   <style>
+    /* Estilo Base */
     body {
       font-family: 'Times New Roman', serif;
       text-align: center;
@@ -29,13 +30,14 @@
       padding: 10px 0;
       width: 100%;
       position: relative;
+      flex-wrap: wrap;
     }
 
     .menu-item {
       background-color: #ecf0f1;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      width: 100px;
+      width: 120px;
       height: 40px;
       display: flex;
       align-items: center;
@@ -56,6 +58,7 @@
       color: #fff;
     }
 
+    /* Estilo das Runas */
     .runas-container {
       display: flex;
       flex-wrap: wrap;
@@ -69,8 +72,8 @@
       background: linear-gradient(135deg, #fff, #ecf0f1);
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      width: 120px;
-      height: 180px;
+      width: 100px;
+      height: 150px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -92,17 +95,18 @@
 
     .runa-title {
       position: absolute;
-      bottom: 15px;
+      bottom: 10px;
       left: 0;
       right: 0;
       background-color: rgba(44, 62, 80, 0.8);
       color: #ecf0f1;
-      font-size: 1.2em;
+      font-size: 1em;
       padding: 5px;
       text-align: center;
       border-radius: 5px;
     }
 
+    /* Estilo do Resultado */
     .result {
       margin-top: 30px;
       padding: 20px;
@@ -132,15 +136,56 @@
       background-color: #34495e;
     }
 
+    /* Estilo Responsivo */
     @media (max-width: 768px) {
-      .runas-container {
+      .menu {
         flex-direction: column;
+        gap: 10px;
+      }
+
+      .menu-item {
+        width: auto;
+        font-size: 1em;
+        height: auto;
+        padding: 10px;
+      }
+
+      .runas-container {
+        gap: 15px;
+      }
+
+      .runa {
+        width: 80px;
+        height: 120px;
+        font-size: 1.5em;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .runa {
+        width: 60px;
+        height: 90px;
+        font-size: 1.2em;
+      }
+
+      button {
+        font-size: 0.9em;
+        padding: 8px 16px;
+      }
+
+      .result {
+        font-size: 0.9em;
       }
     }
   </style>
 </head>
 
 <body>
+  <!-- Menu Navegação -->
   <nav class="menu">
     <a href="https://alexxanorafa.github.io/Tempo_e_Sonhos/" class="menu-item">Tempo e Sonhos</a>
     <a href="https://alexxanorafa.github.io/posicionamentodosastros/" class="menu-item">Mapa Astral</a>
@@ -148,24 +193,33 @@
     <a href="https://alexxanorafa.github.io/Runas-do-Destino/" class="menu-item">Runas do Destino</a>
   </nav>
 
+  <!-- Título -->
   <header>
     <h1>Runas do Destino</h1>
   </header>
 
+  <!-- Seletor de Leitura -->
   <main>
-    <div class="runas-container" id="runas-container">
-      <!-- Runas serão geradas aqui -->
+    <div>
+      <h2>Escolha o tipo de leitura:</h2>
+      <select id="leitura-opcao" onchange="exibirInstrucoes()">
+        <option value="1">Uma única runa</option>
+        <option value="3">Três runas (Passado, Presente e Futuro)</option>
+        <option value="5">Cinco runas (Análise detalhada)</option>
+        <option value="cruz">Cruz de Runas</option>
+      </select>
     </div>
 
-    <div class="button-container">
-      <button onclick="sortearRunas()">Sortear Runas</button>
-    </div>
+    <!-- Instruções -->
+    <div id="instrucoes"></div>
+
+    <!-- Resultado -->
+    <div class="runas-container" id="runas-container"></div>
+    <button onclick="sortearRunas()">Sortear Runas</button>
 
     <div class="result" id="result">
       <h2>Significado das Runas</h2>
-      <div id="runas-meanings">
-        <!-- Significados das runas sorteadas serão mostrados aqui -->
-      </div>
+      <div id="runas-meanings"></div>
     </div>
   </main>
 
@@ -174,6 +228,7 @@
   </footer>
 
   <script>
+    // Código JavaScript atualizado com opções de leitura
     const runas = [
       { symbol: "ᚠ", title: "Fehu", meaning: "Fehu é a runa da riqueza e prosperidade, representando tanto a riqueza material quanto a energia positiva necessária para atrair abundância. É uma runa de boa sorte que fala da realização através de trabalho árduo e da recompensa dos esforços." },
       { symbol: "ᚢ", title: "Uruz", meaning: "Uruz é uma runa de força e resistência. Representa a energia vital que alimenta os seres humanos e os conecta ao mundo natural. É também a runa da transformação e da saúde física, espiritual e mental." },
@@ -199,31 +254,31 @@
       { symbol: "ᛟ", title: "Othala", meaning: "Othala é a runa do legado, da herança e da proteção. Ela está ligada ao conceito de lar, família e tradição, representando a importância das raízes e o legado que é deixado para as futuras gerações." }
     ];
 
-    function sortearRunas() {
-      const selectedRunas = runas.sort(() => 0.5 - Math.random()).slice(0, 3);
-      const runasContainer = document.getElementById("runas-container");
-      runasContainer.innerHTML = "";
-
-      selectedRunas.forEach(runa => {
-        const runaElement = document.createElement("div");
-        runaElement.className = "runa";
-        runaElement.innerHTML = `
-          <div class="runa-title">${runa.symbol}</div>
-        `;
-        runasContainer.appendChild(runaElement);
-      });
-
-      mostrarSignificados(selectedRunas);
+    // Funções de interação
+    function exibirInstrucoes() {
+      const opcao = document.getElementById("leitura-opcao").value;
+      const instrucoes = {
+        "1": "Escolha uma runa para uma pergunta direta.",
+        "3": "Passado, presente e futuro.",
+        "5": "Análise detalhada com cinco runas.",
+        "cruz": "Distribuição de cruz: significado mais complexo."
+      };
+      document.getElementById("instrucoes").innerText = instrucoes[opcao];
     }
 
-    function mostrarSignificados(runas) {
-      const meaningsContainer = document.getElementById("runas-meanings");
-      meaningsContainer.innerHTML = "";
+    function sortearRunas() {
+      const opcao = document.getElementById("leitura-opcao").value;
+      const quantidade = opcao === "cruz" ? 7 : parseInt(opcao, 10);
+      const selecionadas = runas.sort(() => 0.5 - Math.random()).slice(0, quantidade);
+      const container = document.getElementById("runas-container");
+      const resultContainer = document.getElementById("runas-meanings");
+      
+      container.innerHTML = "";
+      resultContainer.innerHTML = "";
 
-      runas.forEach(runa => {
-        const meaningElement = document.createElement("div");
-        meaningElement.innerHTML = `<h3>${runa.title}</h3><p>${runa.meaning}</p>`;
-        meaningsContainer.appendChild(meaningElement);
+      selecionadas.forEach(runa => {
+        container.innerHTML += `<div class="runa"><div class="runa-title">${runa.symbol}</div></div>`;
+        resultContainer.innerHTML += `<h3>${runa.title}</h3><p>${runa.meaning}</p>`;
       });
     }
   </script>
