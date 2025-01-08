@@ -62,14 +62,15 @@
       justify-content: center;
       gap: 20px;
       padding: 20px;
+      margin-top: 30px;
     }
 
     .runa {
-      background-color: #ecf0f1;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      width: 100px;
-      height: 100px;
+      background: linear-gradient(135deg, #fff, #ecf0f1);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 120px;
+      height: 180px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -77,17 +78,21 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      font-size: 2.5em;
+      color: #2c3e50;
+      text-align: center;
     }
 
     .runa:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, #bdc3c7, #ecf0f1);
     }
 
     .runa-title {
       position: absolute;
-      bottom: 10px;
+      bottom: 15px;
       left: 0;
       right: 0;
       background-color: rgba(44, 62, 80, 0.8);
@@ -95,10 +100,11 @@
       font-size: 1.2em;
       padding: 5px;
       text-align: center;
+      border-radius: 5px;
     }
 
     .result {
-      margin-top: 20px;
+      margin-top: 30px;
       padding: 20px;
       background-color: #ecf0f1;
       border-radius: 10px;
@@ -125,6 +131,12 @@
     button:hover {
       background-color: #34495e;
     }
+
+    @media (max-width: 768px) {
+      .runas-container {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 
@@ -133,7 +145,7 @@
     <a href="https://alexxanorafa.github.io/Tempo_e_Sonhos/" class="menu-item">Tempo e Sonhos</a>
     <a href="https://alexxanorafa.github.io/posicionamentodosastros/" class="menu-item">Mapa Astral</a>
     <a href="https://alexxanorafa.github.io/baralhocigano/" class="menu-item">Tarô de Marselha</a>
-    <a href="https://alexxanorafa.github.io/Runas_do_Destino/" class="menu-item">Runas do Destino</a>
+    <a href="https://alexxanorafa.github.io/Runas-do-Destino/" class="menu-item">Runas do Destino</a>
   </nav>
 
   <header>
@@ -158,108 +170,34 @@
   </main>
 
   <footer>
-    <p>© 2025 Runas do Destino. De Alexandre Ventura</p>
+    <p>© 2025 Runas do Destino</p>
   </footer>
 
   <script>
     const runas = [
-  { 
-    title: "Fehu", 
-    meaning: "Prosperidade, abundância, riqueza móvel. Fehu é o fogo primordial que alimenta a vida. Representa a abundância que flui como um rio – um recurso que deve ser administrado com sabedoria. Não é apenas riqueza material, mas também o poder criativo e a capacidade de gerar valor para si e para os outros. Assim como o gado, símbolo associado a esta runa, a prosperidade cresce com cuidado e propósito."
-  },
-  { 
-    title: "Uruz", 
-    meaning: "Força, resistência, energia vital. Uruz é o espírito do auroque, um animal selvagem e indomado que vive dentro de cada um de nós. Representa o poder bruto da vida, a coragem para superar desafios e a força interior para transformar adversidades em crescimento. Esta runa nos convida a honrar nossa natureza primitiva e usar nossa força sabiamente."
-  },
-  { 
-    title: "Thurisaz", 
-    meaning: "Proteção, mudança, desafios. Thurisaz é o portão que separa o conhecido do desconhecido. Representa o poder das forças primordiais que podem tanto proteger quanto destruir. É um lembrete de que, ao enfrentar tempestades, aprendemos a dançar sob a chuva. Esta runa nos desafia a usar nossa sabedoria para transformar obstáculos em oportunidades."
-  },
-  { 
-    title: "Ansuz", 
-    meaning: "Comunicação, sabedoria divina, inspiração. Ansuz é a voz dos deuses, o sopro de Odin que inspira o espírito humano. Representa a clareza da mente e a eloquência que pode unir corações e transformar realidades. Esta runa nos lembra de ouvir as mensagens do universo e expressar nossa verdade com autenticidade."
-  },
-  { 
-    title: "Raido", 
-    meaning: "Jornada, progresso, movimento. Raido é o caminho sob nossos pés, o vento que impulsiona nossas velas. Representa a jornada da vida, com seus altos e baixos, suas curvas e retas. Esta runa nos encoraja a caminhar com propósito, confiando no destino, enquanto aprendemos a apreciar o próprio ato de viajar."
-  },
-  { 
-    title: "Kenaz", 
-    meaning: "Iluminação, criatividade, transformação. Kenaz é a tocha que ilumina a escuridão, revelando o que antes era oculto. Representa o fogo criativo que transforma matéria em arte, ideia em realidade. Esta runa nos inspira a explorar nossos talentos e compartilhar nossa luz com o mundo."
-  },
-  { 
-    title: "Gebo", 
-    meaning: "Parcerias, trocas, equilíbrio. Gebo é o presente que une, a dádiva que fortalece vínculos. Representa o equilíbrio entre dar e receber, lembrando que as conexões mais valiosas são construídas com generosidade e respeito mútuo. Esta runa nos ensina que as verdadeiras riquezas estão nas trocas genuínas."
-  },
-  { 
-    title: "Wunjo", 
-    meaning: "Alegria, harmonia, realização. Wunjo é o raio de sol após a tempestade, o estado de êxtase que nasce da conexão com o que nos faz felizes. Representa a união de corpo, mente e espírito em perfeita harmonia. Esta runa nos lembra de celebrar os momentos de felicidade, por mais breves que sejam."
-  },
-  { 
-    title: "Hagalaz", 
-    meaning: "Disrupção, renascimento, forças naturais. Hagalaz é o granizo que destrói para renovar. Representa as forças inevitáveis da natureza e as mudanças que não podemos controlar. Esta runa nos desafia a encontrar significado na adversidade, pois é do caos que nasce a transformação."
-  },
-  { 
-    title: "Nauthiz", 
-    meaning: "Necessidade, resistência, superação. Nauthiz é o fogo que nasce do atrito, a força que emerge nos momentos de carência. Representa a paciência e a capacidade de superar limitações. Esta runa nos ensina que, mesmo na escassez, podemos encontrar recursos dentro de nós mesmos."
-  },
-  { 
-    title: "Isa", 
-    meaning: "Estagnação, introspecção, gelo. Isa é a quietude do inverno, o momento de pausa antes do renascimento. Representa a necessidade de parar, refletir e preservar energia. Esta runa nos lembra que, sob o gelo aparente, há vida aguardando o degelo."
-  },
-  { 
-    title: "Jera", 
-    meaning: "Ciclo, recompensa, colheita. Jera é o ciclo das estações, a certeza de que a primavera sempre segue o inverno. Representa o fruto do trabalho árduo e o tempo natural das coisas. Esta runa nos encoraja a ter paciência e confiar no ritmo da vida."
-  },
-  { 
-    title: "Eihwaz", 
-    meaning: "Proteção, transformação, conexão espiritual. Eihwaz é a árvore do teixo, símbolo de vida e morte. Representa a força espiritual que nos protege e guia através das transições. Esta runa nos lembra que cada fim traz consigo um novo começo."
-  },
-  { 
-    title: "Perthro", 
-    meaning: "Mistério, destino, sorte. Perthro é o cálice do desconhecido, o jogo do acaso que molda nosso destino. Representa o mistério da vida e a magia que reside na incerteza. Esta runa nos convida a confiar no poder do invisível e a abraçar a aventura do desconhecido."
-  },
-  { 
-    title: "Algiz", 
-    meaning: "Proteção, intuição, conexão divina. Algiz é o cervo que ergue os chifres para o céu, buscando orientação divina. Representa a intuição como um escudo e a capacidade de se conectar com o que é sagrado. Esta runa nos ensina a ouvir nossa voz interior e buscar proteção em nossa espiritualidade."
-  },
-  { 
-    title: "Sowilo", 
-    meaning: "Energia, sucesso, vitalidade. Sowilo é o sol que ilumina e dá vida a tudo. Representa o triunfo do espírito sobre a escuridão e a realização de objetivos. Esta runa nos inspira a brilhar com todo o nosso potencial, como o sol em pleno esplendor."
-  },
-  { 
-    title: "Tiwaz", 
-    meaning: "Justiça, coragem, sacrifício. Tiwaz é a lança de Tyr, o deus da justiça e da coragem. Representa a disposição de lutar pelo que é certo, mesmo que isso exija sacrifícios. Esta runa nos lembra que a verdadeira força está no compromisso com nossos valores."
-  },
-  { 
-    title: "Berkana", 
-    meaning: "Renascimento, crescimento, fertilidade. Berkana é a energia da primavera, o brotar de novas folhas. Representa o cuidado necessário para nutrir e crescer, seja um projeto, uma relação ou a própria alma. Esta runa nos convida a honrar o ciclo da vida e a celebrar o nascimento do novo."
-  },
-  { 
-    title: "Ehwaz", 
-    meaning: "Parceria, progresso, movimento harmonioso. Ehwaz é o cavalo, símbolo de confiança mútua e colaboração. Representa a harmonia que nasce do trabalho em conjunto. Esta runa nos ensina a valorizar as relações baseadas em confiança e respeito."
-  },
-  { 
-    title: "Mannaz", 
-    meaning: "Humanidade, conexão, identidade. Mannaz é o espelho que reflete nossa essência e nossas conexões com os outros. Representa o potencial humano e a interdependência. Esta runa nos lembra que, ao nos entendermos, fortalecemos nossa relação com o mundo."
-  },
-  { 
-    title: "Laguz", 
-    meaning: "Intuição, fluxo, emoções. Laguz é a água, fluida e adaptável. Representa a profundidade das emoções e a intuição como guia. Esta runa nos convida a fluir com as correntes da vida e a confiar nos sussurros de nossa alma."
-  },
-  { 
-    title: "Inguz", 
-    meaning: "Fertilidade, conclusão, potencial. Inguz é a semente que contém a promessa de uma nova vida. Representa o encerramento de ciclos e a liberação de energia criativa. Esta runa nos lembra que, ao terminar algo, abrimos espaço para novos começos."
-  },
-  { 
-    title: "Dagaz", 
-    meaning: "Despertar, transformação, equilíbrio. Dagaz é o momento em que a noite encontra o dia, a aurora da transformação. Representa o despertar para um novo estado de ser. Esta runa nos inspira a abraçar a luz e o equilíbrio em todas as coisas."
-  },
-  { 
-    title: "Othala", 
-    meaning: "Herança, lar, legado. Othala é a terra dos ancestrais, o legado espiritual e material que recebemos e transmitimos. Representa as raízes que nos sustentam e os frutos que oferecemos ao mundo. Esta runa nos conecta ao que é eterno."
-  }
-];
+      { symbol: "ᚠ", title: "Fehu", meaning: "Fehu é a runa da riqueza e prosperidade, representando tanto a riqueza material quanto a energia positiva necessária para atrair abundância. É uma runa de boa sorte que fala da realização através de trabalho árduo e da recompensa dos esforços." },
+      { symbol: "ᚢ", title: "Uruz", meaning: "Uruz é uma runa de força e resistência. Representa a energia vital que alimenta os seres humanos e os conecta ao mundo natural. É também a runa da transformação e da saúde física, espiritual e mental." },
+      { symbol: "ᚦ", title: "Thurisaz", meaning: "Thurisaz está associada à proteção, desafios e mudança. Embora possa indicar perigo, ela também simboliza a capacidade de enfrentar e superar obstáculos, o que a torna uma runa de força e resistência contra forças externas." },
+      { symbol: "ᚨ", title: "Ansuz", meaning: "Ansuz é a runa da comunicação, da sabedoria divina e da inspiração. Ela está associada aos deuses e à habilidade de se comunicar de forma eficaz, bem como ao processo criativo e à educação." },
+      { symbol: "ᚱ", title: "Raido", meaning: "Raido é a runa da jornada e do movimento. Representa viagens físicas, espirituais ou emocionais, e pode indicar que um ciclo ou uma fase da vida está se completando ou que novas possibilidades estão surgindo." },
+      { symbol: "ᚲ", title: "Kenaz", meaning: "Kenaz é a runa da iluminação, da criatividade e da transformação. Ela está associada ao fogo, simbolizando tanto a destruição quanto a criação, revelando a luz que pode trazer clareza para a mente e o coração." },
+      { symbol: "ᚷ", title: "Gebo", meaning: "Gebo é a runa das parcerias, trocas e equilíbrio. Ela simboliza a união e a reciprocidade, enfatizando o valor das trocas justas e o equilíbrio entre dar e receber." },
+      { symbol: "ᚺ", title: "Wunjo", meaning: "Wunjo é a runa da alegria, harmonia e realização. Ela simboliza o prazer, a felicidade e o sucesso, indicando que a harmonia e o bem-estar estão presentes na vida de quem a recebe." },
+      { symbol: "ᚻ", title: "Hagalaz", meaning: "Hagalaz é a runa da disrupção e do renascimento. Representa as forças naturais que podem causar destruição, mas também renovação, indicando que algo precisa ser destruído para dar lugar a uma nova criação." },
+      { symbol: "ᚾ", title: "Nauthiz", meaning: "Nauthiz é a runa da necessidade e resistência. Ela aponta para a dificuldade, mas também para a capacidade de superar adversidades. A presença dessa runa sugere que é necessário perseverar em momentos difíceis para alcançar o sucesso." },
+      { symbol: "ᛁ", title: "Isa", meaning: "Isa é a runa da estagnação e da introspecção. Ela pode representar momentos em que as coisas estão paradas ou congeladas, convidando à reflexão e à paciência, pois mudanças podem ocorrer em breve." },
+      { symbol: "ᛃ", title: "Jera", meaning: "Jera é a runa da colheita e dos ciclos naturais. Ela simboliza o ciclo do tempo, da renovação e da recompensa. Essa runa indica que o esforço e a paciência trarão seus frutos, trazendo prosperidade." },
+      { symbol: "ᛒ", title: "Berkana", meaning: "Berkana é a runa do renascimento, do crescimento e da fertilidade. Ela está ligada à criatividade e à maternidade, tanto no sentido literal quanto metafórico, representando novos começos e o florescimento de ideias." },
+      { symbol: "ᛗ", title: "Eihwaz", meaning: "Eihwaz é a runa da proteção, da transformação e da conexão espiritual. Ela está associada à árvore Yggdrasil, a Árvore do Mundo, e representa a necessidade de crescimento espiritual e evolução." },
+      { symbol: "ᛖ", title: "Perthro", meaning: "Perthro é a runa do mistério, destino e sorte. Ela está ligada ao acaso e ao jogo da sorte, sugerindo que nem tudo pode ser controlado, e que há aspectos do destino que estão além da nossa compreensão." },
+      { symbol: "ᛇ", title: "Algiz", meaning: "Algiz é a runa da proteção, intuição e conexão divina. Ela representa o escudo que protege contra forças negativas e a conexão com o mundo espiritual e as forças superiores que nos guiam." },
+      { symbol: "ᛋ", title: "Sowilo", meaning: "Sowilo é a runa da energia, vitalidade e sucesso. Ela simboliza o poder do sol e da luz, trazendo clareza e inspiração, e indicando que as energias positivas estão fluindo de forma abundante." },
+      { symbol: "ᛏ", title: "Tiwaz", meaning: "Tiwaz é a runa da justiça, coragem e sacrifício. Ela representa o deus Týr, simbolizando o sacrifício e a coragem necessária para lutar pela verdade e pela justiça, mesmo que isso envolva desafios pessoais." },
+      { symbol: "ᛚ", title: "Laguz", meaning: "Laguz é a runa da intuição, do fluxo e das emoções. Ela simboliza a água, os sonhos e o inconsciente, representando o fluxo emocional e a necessidade de confiar na intuição." },
+      { symbol: "ᛝ", title: "Inguz", meaning: "Inguz é a runa da fertilidade, do potencial e da conclusão. Ela está associada à realização de objetivos e ao potencial que é trazido à tona quando todas as condições são favoráveis." },
+      { symbol: "ᛞ", title: "Dagaz", meaning: "Dagaz é a runa da transformação e do despertar. Ela simboliza o amanhecer, a clareza e a mudança radical que traz uma nova perspectiva e possibilidades na vida." },
+      { symbol: "ᛟ", title: "Othala", meaning: "Othala é a runa do legado, da herança e da proteção. Ela está ligada ao conceito de lar, família e tradição, representando a importância das raízes e o legado que é deixado para as futuras gerações." }
+    ];
 
     function sortearRunas() {
       const selectedRunas = runas.sort(() => 0.5 - Math.random()).slice(0, 3);
@@ -269,7 +207,9 @@
       selectedRunas.forEach(runa => {
         const runaElement = document.createElement("div");
         runaElement.className = "runa";
-        runaElement.innerHTML = `<div class="runa-title">${runa.title}</div>`;
+        runaElement.innerHTML = `
+          <div class="runa-title">${runa.symbol}</div>
+        `;
         runasContainer.appendChild(runaElement);
       });
 
