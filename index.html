@@ -82,7 +82,7 @@
 
 .menu-item::after {
     content: '';
-    position: absolute;
+    position: static;
     bottom: 0;
     left: 50%;
     width: 0;
@@ -131,7 +131,7 @@
     }
 
     .runa-title {
-      position: absolute;
+      position: static;
       bottom: 10px;
       left: 0;
       right: 0;
@@ -184,26 +184,26 @@
 /* Ajustes responsivos */
 @media (max-width: 768px) {
     .menu-item {
-        height: 25px; /* Reduz altura */
-        font-size: 0.7em; /* Fonte menor */
-        padding: 0 4px; /* Padding reduzido */
+        height: 20px; /* Reduz altura */
+        font-size: 0.6em; /* Fonte menor */
+        padding: 0 2px; /* Padding reduzido */
     }
 }
 
 @media (max-width: 480px) {
     .menu-list {
         flex-direction: row; /* Empilha os itens */
-        gap: 2px; /* Espaçamento menor */
+        gap: 1px; /* Espaçamento menor */
     }
 
     .menu-item {
-        height: 20px; /* Altura mais compacta */
-        font-size: 0.55em; /* Fonte menor */
-        padding: 0 3px; /* Padding ainda menor */
+        height: 15px; /* Altura mais compacta */
+        font-size: 0.25em; /* Fonte menor */
+        padding: 0 2px; /* Padding ainda menor */
     }
 }
       .runas-container {
-        gap: 15px;
+        gap: 10px;
       }
 
       .runa {
@@ -218,18 +218,18 @@
 
     @media (max-width: 480px) {
       .runa {
-        width: 20px;
-        height: 30px;
+        width: 10px;
+        height: 15px;
         font-size: 1.0em;
       }
 
       button {
-        font-size: 0.9em;
-        padding: 8px 16px;
+        font-size: 0.8em;
+        padding: 4px 8px;
       }
 
       .result {
-        font-size: 0.9em;
+        font-size: 0.8em;
       }
     }
   </style>
