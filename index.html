@@ -15,7 +15,7 @@
       background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     }
 
-h1 {
+h2 {
     color: #d4b192;
     font-size: 2.0em;
     margin-bottom: 20px;
@@ -72,17 +72,10 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
-/* Efeito de foco */
-.menu-item:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 73, 94, 0.3); /* Destaque sutil */
-    background-color: #97a6b6; /* Fundo escuro */
-    color: #ecf0f1; /* Texto claro */
-}
 
 .menu-item::after {
     content: '';
-    position: static;
+    position: absolute;
     bottom: 0;
     left: 50%;
     width: 0;
@@ -95,6 +88,29 @@ h1 {
     width: 100%;
     left: 0;
 }
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .menu-item {
+        height: 25px; /* Reduz altura */
+        font-size: 0.8em; /* Fonte menor */
+        padding: 0 6px; /* Padding reduzido */
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-list {
+        flex-direction: row; /* Empilha os itens */
+        gap: 2px; /* Espaçamento menor */
+    }
+
+    .menu-item {
+        height: 20px; /* Altura mais compacta */
+        font-size: 0.55em; /* Fonte menor */
+        padding: 0 3px; /* Padding ainda menor */
+    }
+}
+
     /* Estilo das Runas */
     .runas-container {
       display: flex;
@@ -180,28 +196,6 @@ h1 {
   flex-direction: row;  /* Itens dispostos horizontalmente por padrão */
   gap: 10px;  /* Espaçamento padrão */
 }
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    .menu-item {
-        height: 20px; /* Reduz altura */
-        font-size: 0.6em; /* Fonte menor */
-        padding: 0 2px; /* Padding reduzido */
-    }
-}
-
-@media (max-width: 480px) {
-    .menu-list {
-        flex-direction: row; /* Empilha os itens */
-        gap: 1px; /* Espaçamento menor */
-    }
-
-    .menu-item {
-        height: 15px; /* Altura mais compacta */
-        font-size: 0.25em; /* Fonte menor */
-        padding: 0 2px; /* Padding ainda menor */
-    }
-}
       .runas-container {
         gap: 10px;
       }
@@ -247,13 +241,13 @@ h1 {
 
   <!-- Título -->
   <header>
-    <h1>Runas do Destino</h1>
+    <h2>Runas do Destino</h2>
   </header>
 
   <!-- Seletor de Leitura -->
   <main>
     <div>
-      <h3>Escolha o tipo de leitura:</h3>
+      <h5>Escolha o tipo de leitura:</h5>
       <select id="leitura-opcao" onchange="exibirInstrucoes()">
         <option value="1">Uma única runa</option>
         <option value="3">Três runas (Passado, Presente e Futuro)</option>
@@ -270,7 +264,7 @@ h1 {
     <button onclick="sortearRunas()">Sortear Runas</button>
 
     <div class="result" id="result">
-      <h2>Significado das Runas</h2>
+      <h4>Significado das Runas</h4>
       <div id="runas-meanings"></div>
     </div>
   </main>
