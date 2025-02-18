@@ -246,12 +246,19 @@
   
       /* Estilo do Resultado */
       .result {
+        color: var(--secondary);
         margin-top: 30px;
         padding: 20px;
         background-color: #ecf0f1;
         border-radius: 10px;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      }
+        
+        display: flex; /* Itens lado a lado */
+        flex-wrap: wrap; /* Permite quebra de linha se necessário */
+        justify-content: center; /* Centraliza horizontalmente */
+        gap: 15px; /* Espaçamento entre as runas */
+    }
+    
   
       footer {
         margin-top: 20px;
