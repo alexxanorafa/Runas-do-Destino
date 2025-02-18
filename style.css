@@ -183,7 +183,7 @@
   
     /* Estilo das Runas */
     .runas-container {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center; /* Centraliza horizontalmente */
         justify-content: center; /* (Opcional) Centraliza verticalmente */
         text-align: center;
